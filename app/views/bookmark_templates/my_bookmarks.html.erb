@@ -21,10 +21,123 @@
           </div>
          
           <div class="card-body">
-            <!--<a href="/blogposts/<%= mybookmark.blogpost.id %>">
-            <%= mybookmark.blogpost.image %>
+            <a href="/blogposts/<%= mybookmark.blogpost_id %>">
                 <img src="<%= mybookmark.blogpost.image %>" class="img-fluid">
-   
+            <div>
+              <small>
+                <% array = [] %>
+                <% mybookmark.blogpost.bookmarked_users.each do |bookmarked_user| %>
+                  <% array.push (bookmarked_user.username) %>
+                <% end %>
+                <%= array.to_sentence %>
+                <% if mybookmark.blogpost.bookmarked_users.count > 1 %>
+                  bookmarked
+                <% else %>
+                  bookmarked
+                <% end %>
+                this
+              </small>
+
+              <a href="/delete_bookmark/<%= mybookmark.id %>" class="btn btn-link pull-right">
+                <i class="fas fa-heart"></i> Remove from my bookmarks
+              </a>
+
+              <ul class="list-unstyled pt-3">
+                <li class="media mb-2">
+                    <div class="media-body">
+                      <h6> Posted by
+                        <%= mybookmark.blogpost.user.username %>
+                        <small>
+                          <%= mybookmark.blogpost.created_at %>
+                        </small>
+
+                      </h6>
+                      <h8>Comments:</h8>
+                    </div>
+                    <!-- media-body -->
+                  </li>
+                  
+                <% mybookmark.blogpost.comments.each do |comment| %>
+                  <li class="media mb-2">
+                    <div class="media-body">
+                      <h6>
+                        <%= comment.user.username %>
+                        <small>
+                          <%= time_ago_in_words(comment.created_at) %> ago
+                        </small>
+
+                      </h6>
+                      <%= comment.body %>
+                    </div>
+                    <!-- media-body -->
+                  </li>
+                <% end %>
+              </ul>
+              
+              <li class="media">
+                  <div class="media-body">
+                    <form action="/create_comment" method="post" class="pt-4">
+                      <input type="hidden" name="blogpost_id" value="<%= mybookmark.blogpost.id%>">
+                      <input type="hidden" name="user_id" value="<%= current_user.id%>">
+
+                      <!-- Label and input for body -->
+                      <div class="form-group">
+                        <label for="body" class="sr-only">
+                          Body
+                        </label>
+
+                        <div class="input-group">
+                          <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
+
+                          <span class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                              <i class="far fa-comment"></i>
+
+                              Add Comment
+                            </button>
+                          </span>
+                        </div>
+                        <!-- input-group -->
+                      </div>
+                      <!-- form-group -->
+                    </form>
+                  </div>
+                  <!-- media-body -->
+                </li>
+              
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      My Bookmarks
+    </h1>
+    
+    <a href="blogposts" class="btn btn-block btn-outline-secondary">
+      Browse home brewing blog 
+    </a>
+  </div>
+</div>
+
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <% @mybookmarks.each do |mybookmark| %>
+          <div class="card-header">
+            <h4 class="card-title">
+              <%= mybookmark.blogpost.caption %></a>
+            </h4>
+          </div>
+         
+          <div class="card-body">
+            <a href="/blogposts/<%= mybookmark.blogpost.id %>">
+                <img src="<%= mybookmark.blogpost.image %>" class="img-fluid">
+
             <div>
               <small>
                 <% array = [] %>
