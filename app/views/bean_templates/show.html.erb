@@ -1,0 +1,105 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      <%= @bean.name %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/beans" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/beans/<%= @bean.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit bean
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_bean/<%= @bean.id %>" class="btn btn-block btn-outline-secondary">
+          Delete bean
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dd>
+         <img src="<%= @bean.photo%>" class="img-fluid">
+      </dd>
+      
+      <dt>
+        Origin
+      </dt>
+      <dd>
+        <%= @bean.origin %>
+      </dd>
+
+      <dt>
+        Roast
+      </dt>
+      <dd>
+        <%= @bean.roast %>
+      </dd>
+      
+      <dt>
+        Flavor
+      </dt>
+      <dd>
+        <%= @bean.flavor %>
+      </dd>
+     
+      <dt>
+        Process method
+      </dt>
+      <dd>
+        <%= @bean.process_method %>
+      </dd>
+
+      <dt>
+        Altitude
+      </dt>
+      <dd>
+        <%= @bean.altitude %>
+      </dd>
+
+      <dt>
+        Precipitation
+      </dt>
+      <dd>
+        <%= @bean.precipitation %>
+      </dd>
+
+      <dt>
+        Instruction
+      </dt>
+      <dd>
+        <%= @bean.instruction %>
+      </dd>
+
+      <dt>
+        Recommended machine
+      </dt>
+      <dd>
+        <a href="/machines/<%= @bean.recommended_machine_id %>">
+          <%= Machine.find(@bean.recommended_machine_id).name %>
+        </a>
+      </dd>
+      
+      <dt>
+        Recommended tools
+      </dt>
+      <dd>
+          <% ToolMatch.where(beans_id: @bean.id).each do |toolmatch| %>
+            <li class="list-group-item">
+              <a href="/tools/<%= toolmatch.tools_id %>">
+                <%= Tool.find(toolmatch.tools_id).name %>
+              </a>
+          <% end %>
+      </dd>
+
+    </dl>
+  </div>
+</div>
+

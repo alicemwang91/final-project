@@ -1,0 +1,92 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All Blog Posts
+    </h1>
+
+    <a href="/blogposts/new" class="btn btn-block btn-outline-secondary">
+      Add a new blog post
+    </a>
+  </div>
+</div>
+
+
+<div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <% @blogposts.each do |blogpost|%>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              <dt>
+                <a>
+                  <a href="/blogposts/<%= blogpost.id %>">
+                  <%= blogpost.caption %>
+                </a>  
+              </dt>
+              <small>
+                Posted by
+                <%= blogpost.user.username %>
+                </a>
+                on
+              </small>
+              <small>
+                <%= blogpost.created_at %>
+              </small>
+            </h4>
+          </div>
+
+          <div class="card-body">
+            <a href="/blogposts/<%= blogpost.id %>">
+              <img src="<%= blogpost.image %>" class="img-fluid">
+            </a>
+
+            <div>
+              <small>
+                <% array = [] %>
+                <% id_list =[] %>
+
+                <% blogpost.bookmarked_users.each do |bookmarked_users| %>
+                  <% array.push (bookmarked_users.username) %>
+                  <% id_list.push (bookmarked_users.id) %>
+                <% end %>
+
+                <%= array.to_sentence %>
+
+                <% if blogpost.bookmarked_users.count == 0 %>
+                  Be the first to bookmark
+                <% else %>
+                 bookmarked
+                <% end %>
+                 this
+
+                <% if id_list.include? current_user.id %>
+                  <% blogpost.bookmarks.each do |bookmark| %>
+                    <% if bookmark.user_id == current_user.id %>
+                      <a href="/delete_bookmark/<%= bookmark.id %>" class="btn btn-link pull-right">
+                        <i class="fas fa-heart"></i> Unsave bookmark
+                      </a>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <form action="/create_bookmark" method="post">
+                    <input type="hidden" name="blogpost_id" value="<%= blogpost.id %>">
+                    <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                    <button class="btn btn-link pull-right">
+                      <i class="far fa-heart"></i>
+                      Save to my bookmarks
+                    </button>
+                  </form>
+                <% end %>
+              </small>
+              <div>
+                <a href="/blogposts/<%= blogpost.id %>">
+                  Read more...
+                </a>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- media-body -->
+  </div>

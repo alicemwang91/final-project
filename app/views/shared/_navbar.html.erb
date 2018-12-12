@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      Kukato Coffee Roaster
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-nav-links" aria-controls="collapsible-nav-links" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            About Us
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/companies" class="dropdown-item">
+              Events
+            </a>
+            <a href="/contact" class="dropdown-item">
+              Contacts
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div> <!-- .navbar-collapse -->
+    
+    <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Our Products
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/beans" class="dropdown-item">
+              Beans
+            </a>
+            <a href="/machines" class="dropdown-item">
+              Machines
+            </a>
+            <a href="/tools" class="dropdown-item">
+              Tools
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div> <!-- .navbar-collapse -->
+    
+    <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Learn to Brew with Us
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/blogposts" class="dropdown-item">
+              Home Brewing Blog
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div> <!-- .navbar-collapse -->
+    
+    </ul>
+      <ul class="navbar-nav mr-auto">
+        <% if current_user.blank? %>
+          <li class="nav-item">
+            <a href="/users/sign_in" class="nav-link">
+              Login
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_up" class="nav-link">
+              Create account
+            </a>
+          </li>
+        <% else %>
+         
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.username %>
+             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a href="/my_bookmarks" class="dropdown-item">
+              My Bookmarks
+              </a>
+              <a href="/users/edit" class="dropdown-item">
+              Edit Account
+              </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_out" data-method="delete" class="nav-link">
+              Sign out
+            </a>
+          </li>
+        <% end %>
+      </ul>
+      
+  </div> <!-- .container -->
+</nav>

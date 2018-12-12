@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Bookmark #<%= @bookmark.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/bookmarks" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/bookmarks/<%= @bookmark.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit bookmark
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_bookmark/<%= @bookmark.id %>" class="btn btn-block btn-outline-secondary">
+          Delete bookmark
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @bookmark.user_id %>
+      </dd>
+
+      <dt>
+        Blogpost
+      </dt>
+      <dd>
+        <%= @bookmark.blogpost_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@bookmark.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@bookmark.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

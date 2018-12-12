@@ -1,0 +1,98 @@
+<h1>
+  Edit bean #<%= @bean.id %>
+</h1>
+
+<hr>
+
+<form action="/update_bean/<%= @bean.id %>" method="post">
+
+  <div class="form-group">
+    <label for="Name">
+      Name
+    </label>
+    
+    <input type="text" id="name" name="bane" class="form-control" value="<%= @bean.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="origin">
+      Origin
+    </label>
+
+    <input type="text" id="origin" name="origin" class="form-control" value="<%= @bean.origin %>">
+  </div>
+
+  <div class="form-group">
+    <label for="roast">
+      Roast
+    </label>
+
+    <input type="text" id="roast" name="roast" class="form-control" value="<%= @bean.roast %>">
+  </div>
+
+  <div class="form-group">
+    <label for="process_method">
+      Process method
+    </label>
+
+    <input type="text" id="process_method" name="process_method" class="form-control" value="<%= @bean.process_method %>">
+  </div>
+
+  <div class="form-group">
+    <label for="flavor">
+      Flavor
+    </label>
+
+    <input type="text" id="flavor" name="flavor" class="form-control" value="<%= @bean.flavor %>">
+  </div>
+
+  <div class="form-group">
+    <label for="altitude">
+      Altitude
+    </label>
+
+    <input type="text" id="altitude" name="altitude" class="form-control" value="<%= @bean.altitude %>">
+  </div>
+
+  <div class="form-group">
+    <label for="precipitation">
+      Precipitation
+    </label>
+
+    <input type="text" id="precipitation" name="precipitation" class="form-control" value="<%= @bean.precipitation %>">
+  </div>
+
+  <div class="form-group">
+    <label for="instruction">
+      Instruction
+    </label>
+
+    <textarea id="instruction" name="instruction" class="form-control" rows="3"><%= @bean.instruction %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="recommended_machine_id">
+      Recommended machine
+    </label>
+      <%= select_tag("recommended_machine_id", options_from_collection_for_select(Machine.all, :id, :name, @bean.try(:recommended_machine_id)), :class => "form-control")%>
+      or <a href = "/machines/new"> Add a new machine</a> first
+  </div>
+
+  <div class="form-group">
+    <label for="photo">
+      Photo
+    </label>
+
+    <input type="text" id="photo" name="photo" class="form-control" value="<%= @bean.photo %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update bean
+  </button>
+</form>
+
+<hr>
+
+<a href="/beans">
+  Go back
+</a>

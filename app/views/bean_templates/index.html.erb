@@ -1,0 +1,86 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All beans
+    </h1>
+
+    <a href="/beans/new" class="btn btn-block btn-outline-secondary">
+      Add a new bean
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Name
+        </th>
+
+        <th>
+          Origin
+        </th>
+
+        <th>
+          Roast
+        </th>
+
+        <th>
+          Flavor
+        </th>
+
+        <th>
+          Recommended machine
+        </th>
+
+        <th>
+          Photo
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @beans.each do |bean| %>
+      <tr>
+        <td>
+          <%= bean.name %>
+        </td>
+
+        <td>
+          <%= bean.origin %>
+        </td>
+
+        <td>
+          <%= bean.roast %>
+        </td>
+
+        <td>
+          <%= bean.flavor %>
+        </td>
+    
+        <td>
+          <a href="/machines/<%= bean.recommended_machine_id %>">
+            <%= Machine.find(bean.recommended_machine_id).name %>
+          </a>
+        </td>
+
+        <td>
+          <img src="<%= bean.photo%>" class="img-fluid">
+        </td>
+
+
+        <td>
+          <a href="/beans/<%= bean.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      <%= @tool.name %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/tools" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/tools/<%= @tool.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit tool
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_tool/<%= @tool.id %>" class="btn btn-block btn-outline-secondary">
+          Delete tool
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @tool.name %>
+      </dd>
+
+      <dd>
+         <img src="<%= @tool.photo%>" class="img-fluid">
+      </dd>
+      
+      <dt>
+        Price
+      </dt>
+      <dd>
+        <scan>$</scan> <%= @tool.price %>
+      </dd>
+     
+      <dt>
+        Compatible beans
+      </dt>
+      <dd>
+          <% ToolMatch.where(tools_id: @tool.id).each do |toolmatch| %>
+            <li class="list-group-item">
+              <a href="/beans/<%= toolmatch.beans_id %>">
+                <%= Bean.find(toolmatch.beans_id).name %>
+              </a>
+          <% end %>
+      </dd>
+     
+    </dl>
+  </div>
+</div>
+

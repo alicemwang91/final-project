@@ -1,0 +1,42 @@
+<h1>
+  Edit tool #<%= @tool.id %>
+</h1>
+
+<hr>
+
+<form action="/update_tool/<%= @tool.id %>" method="post">
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @tool.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="price">
+      Price
+    </label>
+
+    <input type="text" id="price" name="price" class="form-control" value="<%= @tool.price %>">
+  </div>
+
+  <div class="form-group">
+    <label for="photo">
+      Photo
+    </label>
+
+    <input type="text" id="photo" name="photo" class="form-control" value="<%= @tool.photo %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update tool
+  </button>
+</form>
+
+<hr>
+
+<a href="/tools">
+  Go back
+</a>

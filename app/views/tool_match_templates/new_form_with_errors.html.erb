@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @tool_match.present? %>
+  <% if @tool_match.errors.any? %>
+    <% @tool_match.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new tool match
+</h1>
+
+
+<hr>
+
+<form action="/create_tool_match" method="post">
+
+  <div class="form-group">
+    <label for="beans_id">
+      Beans
+    </label>
+
+    <input type="text" id="beans_id" name="beans_id" class="form-control" value="<%= @tool_match.beans_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="tools_id">
+      Tools
+    </label>
+
+    <input type="text" id="tools_id" name="tools_id" class="form-control" value="<%= @tool_match.tools_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create tool match
+  </button>
+</form>
+
+<hr>
+
+<a href="/tool_matches">
+  Go back
+</a>

@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All comments
+    </h1>
+
+    <a href="/comments/new" class="btn btn-block btn-outline-secondary">
+      Add a new comment
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Body
+        </th>
+
+        <th>
+          Blogpost
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= comment.id %>
+        </td>
+
+        <td>
+          <%= comment.user_id %>
+        </td>
+
+        <td>
+          <%= comment.body %>
+        </td>
+
+        <td>
+          <%= comment.blogpost_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(comment.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(comment.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/comments/<%= comment.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

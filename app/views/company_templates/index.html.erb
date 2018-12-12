@@ -1,0 +1,65 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      Kukato Coffee
+    </h1>
+
+    <h6 class="text-center">
+      We are .... placeholder
+    </h6>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      What's happening at Kukato
+    </h1>
+
+    <a href="/companies/new" class="btn btn-block btn-outline-secondary">
+      Add a new event!
+    </a>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+
+      <% @companies.reverse_each do |company| %>
+      <tr>
+
+        <td>
+          <p class="font-weight-bold"><%= company.title %></p>
+          
+        </td>
+
+        <td>
+          <img src="<%= company.photo%>" class="img-fluid">
+        </td>
+
+        <td>
+          <%= company.caption %>
+        </td>
+
+        <td>
+          <%= company.created_at %> ago
+        </td>
+
+
+        <td>
+          <a href="/companies/<%= company.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

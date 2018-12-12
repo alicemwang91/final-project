@@ -1,0 +1,50 @@
+<% if @company.errors.any? %>
+  <% @company.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit company #<%= @company.id %>
+</h1>
+
+<hr>
+
+<form action="/update_company/<%= @company.id %>" method="post">
+
+  <div class="form-group">
+    <label for="photo">
+      Photo
+    </label>
+
+    <input type="text" id="photo" name="photo" class="form-control" value="<%= @company.photo %>">
+  </div>
+
+  <div class="form-group">
+    <label for="caption">
+      Caption
+    </label>
+
+    <textarea id="caption" name="caption" class="form-control" rows="3"><%= @company.caption %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+
+    <textarea id="title" name="title" class="form-control" rows="3"><%= @company.title %></textarea>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update company
+  </button>
+</form>
+
+<hr>
+
+<a href="/companies">
+  Go back
+</a>

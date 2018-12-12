@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Tool match #<%= @tool_match.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/tool_matches" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/tool_matches/<%= @tool_match.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit tool match
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_tool_match/<%= @tool_match.id %>" class="btn btn-block btn-outline-secondary">
+          Delete tool match
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Beans
+      </dt>
+      <dd>
+        <%= @tool_match.beans.name %>
+      </dd>
+
+      <dt>
+        Tools
+      </dt>
+      <dd>
+        <%= @tool_match.tools.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= @tool_match.created_at %>
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= @tool_match.updated_at %>
+      </dd>
+    </dl>
+  </div>
+</div>
+

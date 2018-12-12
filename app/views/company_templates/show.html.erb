@@ -1,0 +1,56 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Event "<%= @company.title %>" details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/companies" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/companies/<%= @company.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit event
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_company/<%= @company.id %>" class="btn btn-block btn-outline-secondary">
+          Delete event
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <h4>
+        <%= @company.title %>
+      </h4>
+      
+      <dd>
+        <img src="<%= @company.photo%>" class="img-fluid">
+      </dd>
+
+      <dd>
+        <%= @company.caption %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= @company.created_at %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= @company.updated_at %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

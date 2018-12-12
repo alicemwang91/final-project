@@ -1,0 +1,175 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      <%= @blogpost.caption %>
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/blogposts" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-body">
+            <a href="/blogposts/<%= @blogpost.id %>">
+              <img src="<%= @blogpost.image %>" class="img-fluid">
+            </a>
+
+            <small>
+              Created by
+              <a href="/users/<%= @blogpost.user.id%>">
+                <%= @blogpost.user.username %>
+              </a>
+              on
+            </small>
+            <small>
+              <%= @blogpost.created_at %>
+            </small>
+          </div>
+          <div>
+            <%= @blogpost.body %>
+          </div>
+        </div>
+
+        <% @blogpost.comments.each do |comment| %>
+          <li class="media mb-2">
+            <div class="media-body">
+              <h6>
+                <a href="/users/<%= comment.user_id %>"><%= comment.user.username %></a>
+                <small>
+                  <%= time_ago_in_words(comment.created_at) %> ago
+                </small>
+
+              </h6>
+              <%= comment.body %>
+            </div>
+            <!-- media-body -->
+          </li>
+        <% end %>
+
+        <% if @blogpost.user_id == current_user.id %>
+          <div class="btn-group d-flex" role="group">
+            <a href="/blogposts/<%= @blogpost.id %>/edit" class="btn btn-warning w-100">
+              <i class="fas fa-edit"></i>
+              Edit
+            </a>
+
+            <a href="/delete_blogpost/<%= @blogpost.id %>" class="btn btn-danger w-100" rel="nofollow">
+              <i class="fas fa-trash"></i>
+              Delete
+            </a>
+          </div>
+          <!-- btn-group btn-group-justified -->
+        <% end %>
+
+        <li class="media">
+          <div class="media-body">
+            <form action="/create_comment" method="post" class="pt-4">
+              <input type="hidden" name="blogpost_id" value="<%= @blogpost.id%>">
+              <input type="hidden" name="user_id" value="<%= current_user.id%>">
+
+              <!-- Label and input for body -->
+              <div class="form-group">
+                <label for="body" class="sr-only">
+                  Body
+                </label>
+
+                <div class="input-group">
+                  <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
+
+                  <span class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="far fa-comment"></i>
+
+                      Add Comment
+                    </button>
+                  </span>
+                </div>
+                <!-- input-group -->
+              </div>
+              <!-- form-group -->
+            </form>
+          </div>
+          <!-- media-body -->
+        </li>
+        <div>
+          <div>
+            <div>
+              <div>
+                <small>
+                  <% array = [] %>
+                  <% mybookmark.blogpost.bookmarked_users.each do |bookmarked_user| %>
+                    <% array.push (bookmarked_user.username) %>
+                  <% end %>
+                  <%= array.to_sentence %>
+                  <% if mybookmark.blogpost.bookmarked_users.count > 1 %>
+                    bookmarked
+                  <% else %>
+                    bookmarked
+                  <% end %>
+                  this
+                </small>
+
+                <a href="/delete_like/<%= mybookmark.id %>" class="btn btn-link pull-right">
+                  <i class="fas fa-heart"></i> Remove from my bookmarks
+                </a>
+
+                <ul class="list-unstyled pt-3">
+                  <li class="media mb-2">
+                    <div class="media-body">
+                      <h6> Posted by
+                        <a href="/users/<%= mybookmark.blogpost.user %>"><%= mybookmark.blogpost.user.username %></a>
+                        <small>
+                          <%= mybookmark.blogpost.created_at %>
+                        </small>
+
+                      </h6>
+                    </div>
+                    <!-- media-body -->
+                  </li>
+                </ul>
+
+              </div>
+
+
+              <!--the code stop working from here:
+          
+                  
+              <small>
+              <% id_list =[] %>
+              <% @blogpost.bookmarked_users.each do |bookmarked_user| %>
+                <% id_list.push (bookmarked_user.id) %>
+              <% end %>
+
+
+              <% if id_list.include? current_user.id %>
+                <% @blogpost.bookmarks do |bookmark| %>
+                  <% if @blogpost.bookmark.user_id == current_user.id %>
+                    <a href="/delete_bookmark/<%= bookmark.id %>" class="btn btn-link pull-right">
+                      <i class="fas fa-heart"></i> Unsave bookmark
+                    </a>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <form action="/create_bookmark" method="post">
+                  <input type="hidden" name="blogpost_id" value="<%= @blogpost.id %>">
+                  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                  <button class="btn btn-link pull-right">
+                    <i class="far fa-heart"></i>
+                    Save to my bookmarks
+                  </button>
+                </form>
+              <% end %>
+            </small>
+          </div>
+        </div>
+      </div>

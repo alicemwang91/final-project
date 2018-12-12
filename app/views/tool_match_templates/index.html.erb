@@ -1,0 +1,64 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All tool matches
+    </h1>
+
+    <a href="/tool_matches/new" class="btn btn-block btn-outline-secondary">
+      Add a new tool match
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Beans
+        </th>
+
+        <th>
+          Tools
+        </th>
+
+
+        <th>
+        </th>
+      </tr>
+
+      <% @tool_matches.each do |tool_match| %>
+      <tr>
+        <td>
+          <%= tool_match.id %>
+        </td>
+
+        <td>
+          <a href="/beans/<%= tool_match.beans_id %>">
+            <%= Bean.find(tool_match.beans_id).name %>
+          </a>
+        </td>
+
+        <td>
+          <a href="/tools/<%= tool_match.tools_id %>">
+            <%= Tool.find(tool_match.tools_id).name %>
+        </td>
+
+
+        <td>
+          <a href="/tool_matches/<%= tool_match.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

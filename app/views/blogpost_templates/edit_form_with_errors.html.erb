@@ -1,0 +1,50 @@
+<% if @blogpost.errors.any? %>
+  <% @blogpost.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit blogpost #<%= @blogpost.id %>
+</h1>
+
+<hr>
+
+<form action="/update_blogpost/<%= @blogpost.id %>" method="post">
+
+  <div class="form-group">
+    <label for="caption">
+      Caption
+    </label>
+
+    <textarea id="caption" name="caption" class="form-control" rows="3"><%= @blogpost.caption %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="image">
+      Image
+    </label>
+
+    <input type="text" id="image" name="image" class="form-control" value="<%= @blogpost.image %>">
+  </div>
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @blogpost.user_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update blogpost
+  </button>
+</form>
+
+<hr>
+
+<a href="/blogposts">
+  Go back
+</a>

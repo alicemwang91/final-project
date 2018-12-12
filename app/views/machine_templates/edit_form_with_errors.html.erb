@@ -1,0 +1,58 @@
+<% if @machine.errors.any? %>
+  <% @machine.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit machine #<%= @machine.id %>
+</h1>
+
+<hr>
+
+<form action="/update_machine/<%= @machine.id %>" method="post">
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @machine.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="price">
+      Price
+    </label>
+
+    <input type="text" id="price" name="price" class="form-control" value="<%= @machine.price %>">
+  </div>
+
+  <div class="form-group">
+    <label for="service">
+      Service
+    </label>
+
+    <input type="text" id="service" name="service" class="form-control" value="<%= @machine.service %>">
+  </div>
+
+  <div class="form-group">
+    <label for="photo">
+      Photo
+    </label>
+
+    <input type="text" id="photo" name="photo" class="form-control" value="<%= @machine.photo %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update machine
+  </button>
+</form>
+
+<hr>
+
+<a href="/machines">
+  Go back
+</a>

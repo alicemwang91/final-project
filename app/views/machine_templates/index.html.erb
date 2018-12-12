@@ -1,0 +1,62 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All machines
+    </h1>
+
+    <a href="/machines/new" class="btn btn-block btn-outline-secondary">
+      Add a new machine
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Photo
+        </th>
+
+
+        <th>
+        </th>
+      </tr>
+
+      <% @machines.each do |machine| %>
+      <tr>
+
+        <td>
+          <p class="font-weight-bold"><%= machine.name %></p>
+        </td>
+
+        <td>
+          <scan>$</scan><%= machine.price %> 
+        </td>
+
+        <td>
+          <img src="<%= machine.photo%>" class="img-fluid">
+        </td>
+
+        <td>
+          <a href="/machines/<%= machine.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

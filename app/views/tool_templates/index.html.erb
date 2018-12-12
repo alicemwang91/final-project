@@ -1,0 +1,63 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All tools
+    </h1>
+
+    <a href="/tools/new" class="btn btn-block btn-outline-secondary">
+      Add a new tool
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-6">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        
+        <th>
+          Name
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Photo
+        </th>
+
+
+        <th>
+        </th>
+      </tr>
+
+      <% @tools.each do |tool| %>
+      <tr>
+
+        <td>
+          <p class="font-weight-bold"><%= tool.name %></p>
+        </td>
+
+        <td>
+          <scan>$</scan><%= tool.price %>
+        </td>
+
+        <td>
+          <img src="<%= tool.photo%>" class="img-fluid">
+        </td>
+
+
+        <td>
+          <a href="/tools/<%= tool.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

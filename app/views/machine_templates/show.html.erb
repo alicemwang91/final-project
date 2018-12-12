@@ -1,0 +1,68 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      <%= @machine.name %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/machines" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/machines/<%= @machine.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit machine
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_machine/<%= @machine.id %>" class="btn btn-block btn-outline-secondary">
+          Delete machine
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @machine.name %>
+      </dd>
+
+      <dd>
+        <img src="<%= @machine.photo%>" class="img-fluid">
+      </dd>
+
+      <dt>
+        Price
+      </dt>
+      <dd>
+        <scan>$</scan> <%= @machine.price %>
+      </dd>
+
+      <dt>
+        Add-on Service
+      </dt>
+      <dd>
+        <%= @machine.service %>
+      </dd>
+
+      <dt>
+        Compatible beans
+      </dt>
+      <dd>
+          <% Bean.where(recommended_machine_id: @machine.id).each do |machine| %>
+            <li class="list-group-item">
+              <a href="/beans/<%= machine.id %>">
+                <%= Bean.find(machine.id).name %>
+              </a>
+          <% end %>
+      </dd>
+      
+    </dl>
+  </div>
+</div>
+

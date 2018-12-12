@@ -1,0 +1,65 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Comment #<%= @comment.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/comments" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/comments/<%= @comment.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit comment
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_comment/<%= @comment.id %>" class="btn btn-block btn-outline-secondary">
+          Delete comment
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @comment.user_id %>
+      </dd>
+
+      <dt>
+        Body
+      </dt>
+      <dd>
+        <%= @comment.body %>
+      </dd>
+
+      <dt>
+        Blogpost
+      </dt>
+      <dd>
+        <%= @comment.blogpost_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@comment.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@comment.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
